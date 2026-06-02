@@ -1,4 +1,4 @@
-name: Custom Vanilla Desktop # Replace this name with your image name
+name: Vanilla OS Driftwm
 id: custom # Replace this ID with your image ID
 vibversion: 1.0.7
 
@@ -44,7 +44,6 @@ stages:
               - xdg-desktop-portal-wlr
               - grim
               - slurp
-              - fonts-gnome
               - adwaita-icon-theme
               - pkg-config # Essential for compiling Wayland-based software
               - libpam0g-dev # Required by many Wayland compositors for auth
