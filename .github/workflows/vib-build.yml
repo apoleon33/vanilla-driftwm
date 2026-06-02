@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  CUSTOM_IMAGE_NAME: custom
+  CUSTOM_IMAGE_NAME: driftwm
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 jobs:
@@ -24,6 +24,7 @@ jobs:
 
     permissions:
       contents: write # Allow actions to create a digest
+      packages: write
 
     steps:
       - name: Checkout code
