@@ -57,13 +57,7 @@ stages:
       - name: build-driftwm
         type: shell
         commands:
-          - |
-            . "$HOME/.cargo/env"
-            git clone https://github.com/malbiruk/driftwm.git
-            cd driftwm
-            make build
-            make install
-            cargo install --locked xwayland-satellite
+          - . "$HOME/.cargo/env" && git clone https://github.com/malbiruk/driftwm.git && cd driftwm && make build && make install && cargo install --locked xwayland-satellite
 
       - name: install-driftwm-session-file
         type: shell
