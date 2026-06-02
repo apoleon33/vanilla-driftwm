@@ -30,6 +30,7 @@ stages:
         type: apt
         sources:
           - packages:
+              # --- Dépendances DriftWM (Base Wayland/Smithay) ---
               - libseat-dev
               - libdisplay-info-dev
               - libinput-dev
@@ -37,22 +38,30 @@ stages:
               - libgbm-dev
               - libxkbcommon-dev
               - libwayland-dev
+              - libpam0g-dev
+              
+              # --- Outils de compilation globaux ---
               - build-essential
               - git
               - curl
-              - xdg-desktop-portal
-              - xdg-desktop-portal-wlr
-              - grim
-              - slurp
-              - adwaita-icon-theme
-              - pkg-config # Essential for compiling Wayland-based software
-              - libpam0g-dev # Required by many Wayland compositors for auth
+              - pkg-config
+              - clang
+              - libclang-dev
+              
+              # --- Dépendances Xwayland-satellite (issues du Dockerfile) ---
               - xwayland
               - libxcb1
               - libxcb-cursor0
               - libxcb-cursor-dev
               - libegl1
-              - libegl-dev
+              - libegl-dev # Ajouté pour les headers de compilation C/Rust
+              
+              # --- Utilitaires de l'environnement de bureau ---
+              - xdg-desktop-portal
+              - xdg-desktop-portal-wlr
+              - grim
+              - slurp
+              - adwaita-icon-theme
 
       - name: install-rust
         type: shell
