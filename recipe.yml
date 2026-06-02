@@ -75,6 +75,8 @@ stages:
             Exec=/usr/local/bin/driftwm
             Type=Application
             EOF
+
+      - name: set-image-name-abroot
         type: includes
         includes:
           - modules/80-set-image-abroot-config.yml
