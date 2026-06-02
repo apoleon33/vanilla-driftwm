@@ -55,10 +55,12 @@ stages:
           - . "$HOME/.cargo/env" && rustup toolchain install 1.88
 
       - name: build-driftwm
-        type: shell
-        commands:
-          - . "$HOME/.cargo/env" && git clone https://github.com/malbiruk/driftwm.git && cd driftwm && make build && make install && cargo install --locked xwayland-satellite
-
+         type: shell
+         commands:
+           - . "$HOME/.cargo/env" && git clone https://github.com/malbiruk/driftwm.git && cd driftwm && make build && make install
+           # Installation de xwayland-satellite depuis Git et placement dans un dossier global (/usr/local)
+           - . "$HOME/.cargo/env" && cargo install --git https://github.com/Supreeeme/xwayland-satellite --root /usr/local
+          
       - name: install-driftwm-session-file
         type: shell
         commands:
