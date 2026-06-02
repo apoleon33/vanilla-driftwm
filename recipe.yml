@@ -47,6 +47,7 @@ stages:
               - adwaita-icon-theme
               - pkg-config # Essential for compiling Wayland-based software
               - libpam0g-dev # Required by many Wayland compositors for auth
+              - libxcb-cursor-dev
 
       - name: install-rust
         type: shell
