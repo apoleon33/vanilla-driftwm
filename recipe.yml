@@ -100,6 +100,8 @@ stages:
           - apt-get autoremove -y
           - apt-get clean
           - lpkg --lock
+          - rm -rf /root/.cargo
+          - rm -rf /root/.rustup
 
       - name: fsguard
         type: fsguard
