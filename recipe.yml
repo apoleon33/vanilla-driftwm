@@ -117,8 +117,8 @@ stages:
           #- systemctl enable --now bluetooth NetworkManager upower power-profiles-daemon
           - git clone https://github.com/wayle-rs/wayle
           - cd wayle
-          - cargo install --path wayle
-          - cargo install --path crates/wayle-settings
+          - "$HOME/.cargo/env" && cargo install --path wayle
+          - "$HOME/.cargo/env" && cargo install --path crates/wayle-settings
           - wayle icons setup
           - wayle panel start
 
