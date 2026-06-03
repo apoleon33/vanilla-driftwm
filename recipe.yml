@@ -62,13 +62,6 @@ stages:
               - grim
               - slurp
               - adwaita-icon-theme
-              
-      - name: install-nucleus
-        type: shell
-        commands:
-        - git clone https://github.com/nucleus-hq/nucleus-shell
-        - cd nucleus-shell/install
-        - ./unified.sh
           
 
       - name: install-rust
@@ -96,6 +89,19 @@ stages:
             Exec=/usr/local/bin/driftwm
             Type=Application
             EOF
+            
+      - name: install-wayle
+        type: shell
+        commands:
+          - apt install git pkg-config cmake libgtk-4-dev libgtk4-layer-shell-dev libgtksourceview-5-dev libpulse-dev libfftw3-dev libpipewire-0.3-dev libudev-dev clang build-essential
+          - apt install dbus-user-session bluez network-manager upower power-profiles-daemon pipewire-pulse wireplumber
+          - systemctl enable --now bluetooth NetworkManager upower power-profiles-daemon
+          - git clone https://github.com/wayle-rs/wayle
+          - cd wayle
+          - cargo install --path wayle
+          - cargo install --path crates/wayle-settings
+          - wayle icons setup
+          - wayle panel start
 
       - name: set-image-name-abroot
         type: includes
