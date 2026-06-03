@@ -63,10 +63,12 @@ stages:
               - slurp
               - adwaita-icon-theme
               
-      - name: install-dms
+      - name: install-nucleus
         type: shell
         commands:
-        - curl -fsSL https://install.danklinux.com | sh
+        - git clone https://github.com/nucleus-hq/nucleus-shell
+        - cd nucleus-shell/install
+        - ./unified.sh
           
 
       - name: install-rust
