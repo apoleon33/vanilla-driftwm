@@ -62,29 +62,11 @@ stages:
               - grim
               - slurp
               - adwaita-icon-theme
-
-              - cmake 
-              - ninja-build 
-              - g++ 
-              - qt6-base-dev qt6-declarative-dev
-              - qt6-wayland-dev 
-              - libwayland-dev 
-              - wayland-protocols 
-              - libpipewire-0.3-dev
-              - libxkbcommon-dev 
-              - wlr-randr 
-              - wl-clipboard
               
-      - name: install-noctalia # see https://docs.noctalia.dev/v4/getting-started/installation/#debian
+      - name: install-dms
         type: shell
         commands:
-         - git clone --depth 1 https://github.com/noctalia-dev/noctalia-qs.git ~/builds/noctalia-qs
-         - cd ~/builds/noctalia-qs
-         - cmake -GNinja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local
-         - cmake --build build
-         - cmake --install build
-         - mkdir -p ~/.config/quickshell
-         - git clone https://github.com/youssefvdel/driftwm-noctalia.git  ~/.config/quickshell/noctalia-shell
+        - curl -fsSL https://install.danklinux.com | sh
           
 
       - name: install-rust
