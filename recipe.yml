@@ -69,6 +69,8 @@ stages:
           - curl -fsSL https://pkg.noctalia.dev/gpg.key | gpg --dearmor -o /etc/apt/keyrings/noctalia.gpg
           - echo "deb [signed-by=/etc/apt/keyrings/noctalia.gpg] https://pkg.noctalia.dev/apt sid main" | tee /etc/apt/sources.list.d/noctalia.list
           - apt update
+          - apt-get install -y ddcutil wlsunset wl-clipboard qt6-base-dev qt6-declarative-dev
+          - apt-get dist-upgrade -y
           - apt install noctalia-shell
           
 
