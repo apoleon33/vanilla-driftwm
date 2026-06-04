@@ -63,27 +63,7 @@ stages:
               - slurp
               - adwaita-icon-theme
 
-              # --- wayle ---
-              - git 
-              - pkg-config 
-              - cmake 
-              - libgtk-4-dev 
-              - libgtk4-layer-shell-dev 
-              - libgtksourceview-5-dev 
-              - libpulse-dev 
-              - libfftw3-dev 
-              - libpipewire-0.3-dev 
-              - libudev-dev 
-              - clang 
-              - build-essential
-              - dbus-user-session 
-              - bluez 
-              - network-manager 
-              - upower 
-              - power-profiles-daemon 
-              - pipewire-pulse 
-              - wireplumber
-          
+              - swayosd
 
       - name: install-rust
         type: shell
@@ -110,17 +90,6 @@ stages:
             Exec=/usr/local/bin/driftwm
             Type=Application
             EOF
-            
-      - name: install-wayle
-        type: shell
-        commands:
-          #- systemctl enable --now bluetooth NetworkManager upower power-profiles-daemon
-          - git clone https://github.com/wayle-rs/wayle
-          - cd wayle
-          - . "$HOME/.cargo/env" && cargo install --path wayle
-          - . "$HOME/.cargo/env" && cargo install --path crates/wayle-settings
-          - wayle icons setup
-          - wayle panel start
 
       - name: set-image-name-abroot
         type: includes
