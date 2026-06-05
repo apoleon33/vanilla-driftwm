@@ -89,6 +89,16 @@ stages:
             Type=Application
             EOF
 
+      - name: install-eww
+        type: shell
+        commands:
+          - git clone https://github.com/elkowar/eww
+          - cd eww
+          - "$HOME/.cargo/env" && cargo build --release --no-default-features --features=wayland
+          - cd target/release
+          - chmod +x ./eww
+
+
       - name: set-image-name-abroot
         type: includes
         includes:
