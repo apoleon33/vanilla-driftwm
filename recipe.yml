@@ -63,8 +63,6 @@ stages:
               - slurp
               - adwaita-icon-theme
 
-              - swayosd
-
       - name: install-rust
         type: shell
         commands:
