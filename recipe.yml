@@ -1,5 +1,5 @@
 name: Vanilla OS Driftwm
-id: custom # Replace this ID with your image ID
+id: driftwm
 vibversion: 1.0.7
 
 stages:
@@ -63,15 +63,6 @@ stages:
               - slurp
               - adwaita-icon-theme
 
-              # --- Eww ---
-              - libgtk-3-dev
-              - libgdk-pixbuf-2.0-dev
-              - libpango1.0-dev
-              - libcairo2-dev
-              - libglib2.0-dev
-              - libdbusmenu-gtk3-dev
-              - libgtk-layer-shell-dev
-
       - name: install-rust
         type: shell
         commands:
@@ -97,17 +88,6 @@ stages:
             Exec=/usr/local/bin/driftwm
             Type=Application
             EOF
-
-      - name: install-eww
-        type: shell
-        commands:
-          - git clone https://github.com/elkowar/eww
-          - cd eww
-          - . "$HOME/.cargo/env" && cargo build --release --no-default-features --features=wayland
-          - cd target/release
-          - chmod +x ./eww
-          - cp ./eww /usr/bin/eww
-
 
       - name: set-image-name-abroot
         type: includes
