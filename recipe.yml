@@ -106,6 +106,7 @@ stages:
           - . "$HOME/.cargo/env" && cargo build --release --no-default-features --features=wayland
           - cd target/release
           - chmod +x ./eww
+          - cp ./eww /usr/bin/eww
 
 
       - name: set-image-name-abroot
