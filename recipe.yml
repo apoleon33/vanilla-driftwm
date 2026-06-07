@@ -63,6 +63,14 @@ stages:
               - slurp
               - adwaita-icon-theme
 
+              # --- Eww ---
+              - libgtk-3-dev
+              - libgdk-pixbuf2.0-dev
+              - libpango1.0-dev
+              - libcairo2-dev
+              - libglib2.0-dev
+              - libdbusmenu-gtk3-dev
+
       - name: install-rust
         type: shell
         commands:
