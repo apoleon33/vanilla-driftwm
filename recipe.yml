@@ -62,6 +62,10 @@ stages:
               - grim
               - slurp
               - adwaita-icon-theme
+              - brightnessctl
+              - pactl
+
+              
 
       - name: install-rust
         type: shell
