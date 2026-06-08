@@ -63,7 +63,7 @@ stages:
               - slurp
               - adwaita-icon-theme
               - brightnessctl
-              - pactl
+              - pulseaudio-utils
 
               
 
