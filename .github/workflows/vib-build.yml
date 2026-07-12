@@ -74,6 +74,31 @@ jobs:
           name: digest
           path: digest.txt
 
+      - name: Download the previous driftwm version
+        uses: actions/download-artifact@v7
+        continue-on-error: true
+        with:
+          name: driftwm-version
+          github-token: ${{ github.token }}
+          run-id: ${{ env.LAST_RUN_ID }}
+
+      - name: Check if there was an update to driftwm
+        run: |
+          touch driftwm-version.txt
+          mv driftwm-version.txt last_driftwm_version.txt
+          LATEST_DRIFTWM_RELEASE=$(curl -s https://api.github.com/repos/malbiruk/driftwm/releases/latest | jq -r '.tag_name')
+          echo "$LATEST_DRIFTWM_RELEASE" > driftwm-version.txt
+          echo "Old driftwm version: $(cat last_driftwm_version.txt)"
+          echo "New driftwm version: $(cat driftwm-version.txt)"
+          DRIFTWM_UPDATED=$(cmp -s driftwm-version.txt last_driftwm_version.txt; echo $?)
+          echo "DRIFTWM_UPDATED=$DRIFTWM_UPDATED" >> "$GITHUB_ENV"
+
+      - name: Upload current driftwm version
+        uses: actions/upload-artifact@v6
+        with:
+          name: driftwm-version
+          path: driftwm-version.txt
+
       - name: Set output
         id: set_output
         run: |
@@ -81,12 +106,12 @@ jobs:
           then
             echo action was manually run, updating either way
             echo "has_updates=true" >> "$GITHUB_OUTPUT"
-          elif [ ${{ env.HAS_UPDATES }} == 1 ]
+          elif [ ${{ env.HAS_UPDATES }} == 1 ] || [ ${{ env.DRIFTWM_UPDATED }} == 1 ]
           then
-            echo base image was updated since the last build
+            echo base image or driftwm was updated since the last build
             echo "has_updates=true" >> "$GITHUB_OUTPUT"
           else
-            echo no updates to the base image since the last build
+            echo no updates to base image or driftwm since the last build
             echo "has_updates=false" >> "$GITHUB_OUTPUT"
           fi
 
