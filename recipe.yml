@@ -27,44 +27,9 @@ stages:
       # Put your custom actions below this comment
 
       - name: install-dependencies
-        type: apt
-        sources:
-          - packages:
-              # driftwm dependencies
-              - libseat-dev
-              - libdisplay-info-dev
-              - libinput-dev
-              - libudev-dev
-              - libgbm-dev
-              - libxkbcommon-dev
-              - libwayland-dev
-              - libpam0g-dev
-              
-              # compilations packages
-              - build-essential
-              - git
-              - curl
-              - pkg-config
-              - clang
-              - libclang-dev
-              
-              # Xwayland-satellite
-              - xwayland
-              - libxcb1
-              - libxcb-cursor0
-              - libxcb-cursor-dev
-              - libegl1
-              - libegl-dev
-              
-              # useful desktop tools
-              - xdg-desktop-portal
-              - xdg-desktop-portal-wlr
-              - grim
-              - slurp
-              - adwaita-icon-theme
-              - brightnessctl
-              - pulseaudio-utils
-
+        type: includes
+        includes:
+          - modules/10-install-dependencies.yml
               
 
       - name: install-rust
