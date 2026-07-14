@@ -69,7 +69,7 @@ jobs:
           echo "HAS_UPDATES=$(cmp -s digest.txt last_digest.txt; echo $?)" >> "$GITHUB_ENV"
 
       - name: Upload current digest
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: digest
           path: digest.txt
@@ -94,7 +94,7 @@ jobs:
           echo "DRIFTWM_UPDATED=$DRIFTWM_UPDATED" >> "$GITHUB_ENV"
 
       - name: Upload current driftwm version
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: driftwm-version
           path: driftwm-version.txt
@@ -133,7 +133,7 @@ jobs:
         recipe: 'recipe.yml'
         plugins: 'Vanilla-OS/vib-fsguard:v1.5.3'
 
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       with:
         name: Containerfile
         path: Containerfile
